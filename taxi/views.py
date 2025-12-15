@@ -1,6 +1,5 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views import generic
@@ -93,7 +92,7 @@ class DriverDetailView(LoginRequiredMixin, generic.DetailView):
     queryset = Driver.objects.all().prefetch_related("cars__manufacturer")
 
 
-class DriverCreateView(LoginRequiredMixin, UserCreationForm):
+class DriverCreateView(LoginRequiredMixin, generic.CreateView):
     model = get_user_model()
     success_url = reverse_lazy("taxi:driver-list")
     form_class = DriverForm
