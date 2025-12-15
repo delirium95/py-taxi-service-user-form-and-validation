@@ -7,14 +7,14 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.decorators.http import require_POST
 
 from .forms import DriverForm, DriverLicenseUpdateForm
-from .models import Driver, Car, Manufacturer
+from .models import Car, Manufacturer
 
 
 @login_required
 def index(request):
     """View function for the home page of the site."""
 
-    num_drivers = Driver.objects.count()
+    num_drivers = get_user_model().objects.count()
     num_cars = Car.objects.count()
     num_manufacturers = Manufacturer.objects.count()
 
@@ -89,7 +89,7 @@ class DriverListView(LoginRequiredMixin, generic.ListView):
 
 class DriverDetailView(LoginRequiredMixin, generic.DetailView):
     model = get_user_model()
-    queryset = Driver.objects.all().prefetch_related("cars__manufacturer")
+    queryset = get_user_model().objects.all().prefetch_related("cars__manufacturer")
 
 
 class DriverCreateView(LoginRequiredMixin, generic.CreateView):
