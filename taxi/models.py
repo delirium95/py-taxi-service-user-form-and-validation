@@ -17,7 +17,9 @@ class Manufacturer(models.Model):
 
 
 class Driver(AbstractUser):
-    license_number = models.CharField(max_length=8, unique=True, validators=[code_validator])
+    license_number = models.CharField(max_length=8,
+                                      unique=True,
+                                      validators=[code_validator])
 
     class Meta:
         verbose_name = "driver"

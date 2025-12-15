@@ -19,10 +19,10 @@ class CarForm(forms.ModelForm):
 class DriverForm(forms.ModelForm):
     class Meta:
         model = Driver
-        fields = ['license_number']
+        fields = ["license_number"]
 
 
 class DriverLicenseUpdateForm(forms.ModelForm):
     class Meta:
         model = Driver
-        fields = ['license_number']
+        fields = ["license_number"]
