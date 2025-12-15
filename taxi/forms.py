@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
 
 from taxi.models import Car, Driver
 
@@ -16,13 +17,13 @@ class CarForm(forms.ModelForm):
         fields = "__all__"
 
 
-class DriverForm(forms.ModelForm):
+class DriverForm(UserCreationForm):
     class Meta:
-        model = Driver
-        fields = ["license_number"]
+        model = get_user_model()
+        fields = ["license_number", "username", "password"]
 
 
 class DriverLicenseUpdateForm(forms.ModelForm):
     class Meta:
-        model = Driver
+        model = get_user_model()
         fields = ["license_number"]
